@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<h3>{{ action }} Guest</h3>
+<form method="POST" class="mt-3 shadow p-4 rounded bg-white">
+  <div class="mb-3">
+    <label>Name</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      value="{{ guest['name'] if guest else '' }}"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label>Phone</label>
+    <input
+      type="text"
+      name="phone"
+      class="form-control"
+      value="{{ guest['phone'] if guest else '' }}"
+      required
+    />
+  </div>
+  <button class="btn btn-success">{{ action }} Guest</button>
+  <a href="/guests" class="btn btn-secondary">Back</a>
+</form>
+{% endblock %}

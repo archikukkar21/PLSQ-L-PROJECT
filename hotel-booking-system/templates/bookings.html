@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>📖 Current Bookings</h3>
+  <a href="/book_room" class="btn btn-warning">➕ New Booking</a>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Guest</th>
+      <th>Room Type</th>
+      <th>Check-in</th>
+      <th>Check-out</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in bookings %}
+    <tr>
+      <td>{{ b['booking_id'] }}</td>
+      <td>{{ b['guest'] }}</td>
+      <td>{{ b['room_type'] }}</td>
+      <td>{{ b['checkin'] }}</td>
+      <td>{{ b['checkout'] }}</td>
+      <td>
+        <a
+          href="/delete_booking/{{ b['booking_id'] }}"
+          class="btn btn-danger btn-sm"
+          onclick="return confirm('Delete this booking and mark room as available?')"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

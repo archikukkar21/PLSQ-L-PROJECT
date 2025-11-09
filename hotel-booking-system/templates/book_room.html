@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+<h3>📅 Book a Room</h3>
+<form method="POST" class="mt-3 shadow p-4 rounded bg-white">
+  <div class="mb-3">
+    <label>Guest</label>
+    <select name="guest" class="form-select" required>
+      {% for g in guests %}
+      <option value="{{ g['guest_id'] }}">{{ g['name'] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Room</label>
+    <select name="room" class="form-select" required>
+      {% for r in rooms %}
+      <option value="{{ r['room_id'] }}">
+        {{ r['type'] }} - ₹{{ r['price_per_night'] }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Check-in</label>
+    <input type="date" name="checkin" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Check-out</label>
+    <input type="date" name="checkout" class="form-control" required />
+  </div>
+
+  <button class="btn btn-warning">Book Room</button>
+  <a href="/bookings" class="btn btn-secondary">Back</a>
+</form>
+{% endblock %}
